@@ -75,7 +75,7 @@ const FileInput = (props) => {
         {
             setshowLoader(true);
             let formData = new FormData();
-            formData.append("userid",50253);
+            formData.append("userid",Date.now());
             formData.append("filename", inputFile[0]);
             let path = "";
             if(props.type==="Flipkart")

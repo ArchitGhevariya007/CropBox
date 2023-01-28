@@ -2,22 +2,23 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+//!Main LinearBuffer component
 export default function LinearBuffer(props) {
   const [progress, setProgress] = React.useState(0);
   const [buffer, setBuffer] = React.useState(10);
-
   const progressRef = React.useRef(() => {});
 
-  //custom Theam provider
+  //Custom Theam provider
   const theme = createTheme({
     palette: {
       primary: {
-        // Purple and white play nicely together.
         main: "#5B3F89"
       }
     }
   });
 
+  //Loader progress on component render
   React.useEffect(() => {
     progressRef.current = () => {
       if (progress > 100) {
@@ -32,6 +33,7 @@ export default function LinearBuffer(props) {
     };
   });
 
+  //Loader close
   React.useEffect(() => {
     const timer = setInterval(() => {
       progressRef.current();
@@ -42,6 +44,7 @@ export default function LinearBuffer(props) {
     };
   }, []);
 
+  //Return the Loader copoonent structure
   return (
     <Box sx={{ width: "60%", margin: "50px auto" ,display:props.show===true?'block':'none' }}>
       <ThemeProvider theme={theme}>
@@ -54,4 +57,5 @@ export default function LinearBuffer(props) {
       </ThemeProvider>
     </Box>
   );
+
 }

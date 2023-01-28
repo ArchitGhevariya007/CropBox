@@ -3,13 +3,19 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 
-export default function showFeedbacks() {
+//! Main Component showFeedbacks
+const showFeedbacks = () => {
+    //Feedbacks Hook and State
     const [Feedbacks,setFeedbacks] = React.useState([]);
+
+    //RatingMSG handler
     const RatingMSG = (num) =>
     {
         const msgRate = ["very dissatisfied 🤬","dissatisfied 🙁","neutral 😎","satisfied 😀","very satisfied 🤩"];
         return msgRate[num-1];
     }
+
+    //Feedback Coponent render 
     React.useEffect(() => {
         axios.get('/api/getfeedbacks',
             {
@@ -17,7 +23,7 @@ export default function showFeedbacks() {
                     api_token:'cropBox1008kbngetfeedbackjsnnwtr9yco2vlfgzw9nu5261'
                 }
                 ,params: {
-                    "numOfFeedBacks":10
+                    "numOfFeedBacks":5
                 },
             }
         ).then((response) => {
@@ -30,6 +36,8 @@ export default function showFeedbacks() {
             console.log(err)
         });
     },[]);
+
+    //style for Feedback Component
     const style = {
         outerWrapper:{
             margin:'25px auto',
@@ -88,16 +96,15 @@ export default function showFeedbacks() {
             textTransform:'uppercase'
         }
     }
+
+    //Return the Feedback Component
     return (
         <>
         {
-            
             Feedbacks.length > 0 && 
-                    
             <>
             {
-
-           Feedbacks.map((item)=>(
+        Feedbacks.map((item)=>(
             <Box sx={style.outerWrapper}>
                     <Box sx={style.innerWrapper}>
                         <Box sx={style.logoWrapper}>   
@@ -121,3 +128,4 @@ export default function showFeedbacks() {
         
     );
 }
+export default showFeedbacks;

@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import  { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -10,14 +9,19 @@ import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from '@mui/material/Alert';
 import Loader from './Loader.js';
-
-
 import "../assets/style/Dropzone.css";
 import { Box } from "@mui/system";
+
+//!Outside the Component 
+//Snack Bar structure customization
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-const FileInput = props => {
+});
+
+//!Main Component FileInput
+const FileInput = (props) => {
+
+    //Hooks and states
     const wrapperRef = useRef(null);
     const [inputFile, setinputFile] = useState([]);
     const [outputFile, setoutputFile] = useState("");
@@ -27,6 +31,7 @@ const FileInput = props => {
     const [typeAlert, settypeAlert] = useState("success");
     const [showLoader , setshowLoader] = useState(false);
 
+    //close handler
     const handleClose = (event, reason) => {
         if (reason === "clickaway") {
             return;
@@ -34,13 +39,14 @@ const FileInput = props => {
         setopenAlert(false);
     };
 
+    //open handler
     const handleOpen = (msg,type) => {
         setmsgAlert(msg);
         settypeAlert(type);
         setopenAlert(true);
-      
     };
 
+    //Drag and Drop handlers
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
     const onDrop = () => wrapperRef.current.classList.remove('dragover');
@@ -54,6 +60,7 @@ const FileInput = props => {
         }
     }
 
+    //FileRemove handler
     const fileRemove = (file) => {
         const updatedList = [...inputFile];
         updatedList.splice(inputFile.indexOf(file), 1);
@@ -62,7 +69,7 @@ const FileInput = props => {
        // console.log(updatedList);
     }
 
-    //upload pdf to server
+    //upload pdf on server
     const upload = () => {
         if(inputFile.length > 0)
         {
@@ -165,6 +172,7 @@ const FileInput = props => {
         },3000);
     }
 
+    //Return the component structure
     return (
         <div style={{width: '100%'}}>
             <div ref={wrapperRef} className="drop-file-input" onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDrop={onDrop}>

@@ -17,16 +17,23 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
+
+//navIteams
 const navItems = ["Flipkart", "Meesho", "Feedback"];
 
-function Navbar(props) {
+//!Navbar main component
+const Navbar = (props) => {
   const { window } = props;
+
+  //Hook ans state
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  //handleDrawerToggle
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  //drawer object
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2,fontSize: '19px',fontWeight:900,color: '#5B3F89'}}>
@@ -47,28 +54,18 @@ function Navbar(props) {
     </Box>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
+  //Return the navbar component
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar component="nav" sx={{backgroundColor:'#5B3F89'}}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
+          <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: "none" } }}>
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "flex",fontWeight:900 } }}
-          >
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: { sm: "flex",fontWeight:900 },textAlign:{xs:"end   "} }}>
             CROPBOX
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -97,8 +94,7 @@ function Navbar(props) {
               boxSizing: "border-box",
               width: drawerWidth
             }
-          }}
-        >
+          }}>
           {drawer}
         </Drawer>
       </Box>
@@ -106,11 +102,8 @@ function Navbar(props) {
   );
 }
 
+//Navbar component propTypes
 Navbar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func
 };
 

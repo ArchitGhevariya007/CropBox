@@ -4,7 +4,10 @@ import { Typography } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-function Footer() {
+
+//!Main Footer component
+const Footer = () =>{
+    //style object for footer component
     const style = {
         outerBox: {
             display: { sm: "block", md: "block", lg: "flex" },
@@ -47,9 +50,16 @@ function Footer() {
             '&:hover': {
                 color: "#5B3F89",
             }
+        },
+        link:{
+            color:"black !important"
         }
     };
+
+    //navIteams array
     const navItems = ["Flipkart", "Meesho", "Feedback"];
+
+    //Return the Footer component structure
     return (
         <>
             <Box sx={style.outerBox}>
@@ -64,7 +74,7 @@ function Footer() {
                         Minimize your shipping label hassle and hike your online bussiness with cropbox.
                         </Typography>
                         <Typography sx={style.content}>
-                            <p><b>help.cropbox@gmail.com</b></p>
+                        <p><b><a style={{color:'black'}} href="mailto:help.cropbox@gmail.com">help.cropbox@gmail.com</a></b></p>
                         </Typography>
                     </Box>
                 </Box>

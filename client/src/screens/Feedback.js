@@ -1,11 +1,9 @@
 import * as React from "react";
-
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import FeedbackForm from "../components/feedbackForm";
-//import ShowFeedbacks from "../components/showFeedbacks";
 
 function Feedback(props) {
     const style = {

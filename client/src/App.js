@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Flipkart from "./screens/Flipkart";
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<Flipkart />}></Route>
         <Route path="/flipkart" element={<Flipkart />}></Route>

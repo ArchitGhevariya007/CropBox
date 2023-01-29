@@ -12,7 +12,6 @@ function App() {
         <Route path="/flipkart" element={<Flipkart />}></Route>
         <Route path="/meesho" element={<Meesho />}></Route>
         <Route path="/feedback" element={<Feedback />}></Route>
-        <Route path="/*" element={<Flipkart />}></Route>
       </Routes>
     </Router>
   );
